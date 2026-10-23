@@ -1,0 +1,38 @@
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local root = char:WaitForChild("HumanoidRootPart")
+
+local eggsFolder = Workspace:WaitForChild("Eggs")
+local stealRemote = ReplicatedStorage:FindFirstChild("RequestAutoEgg")
+local placeRemote = ReplicatedStorage:FindFirstChild("RequestAutoPlaceEgg")
+
+local rarities = {"Common", "Rare", "Epic", "Legendary", "Mythic", "Secret"}
+local selectedRarityIdx = 1
+local running = false
+local placing = false
+local maxDist = 15
+
+-- UI CREATION (Modern Theme)
+local gui = Instance.new("ScreenGui")
+gui.Name = "PremiumEggBot"
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local main = Instance.new("Frame")
+main.Size = UDim2.fromOffset(300, 380)
+main.Position = UDim2.new(0.5, -150, 0.5, -190)
+main.BackgroundColor3 = Color3.fromRGB(30, 32, 40)
+main.BorderSizePixel = 0
+main.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 10)
+corner.Parent = main
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.BackgroundColor3 = Color3.fromRGB(60, 40, 180
